@@ -5,7 +5,7 @@ import imageio
 import numpy as np
 from pathlib import Path
 from torch.autograd import Variable
-from algorithms.maddpg import MADDPG
+from maddpg.algorithms.maddpg import MADDPG
 from pettingzoo.mpe import simple_spread_v2
 
 def run(config):
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     parser.add_argument("--env_id", default="simple_spread", help="Name of environment")
     parser.add_argument("--model_name", default='model/save_dir',
                         help="Name of model")
-    parser.add_argument("--run_num", default=1, type=int)
+    parser.add_argument("--run_num", default=2, type=int)
     parser.add_argument("--save_gifs", action="store_false",
                         help="Saves gif of each episode into model directory")
     parser.add_argument("--incremental", default=None, type=int,

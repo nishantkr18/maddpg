@@ -7,8 +7,9 @@ from gym.spaces import Box, Discrete
 from pathlib import Path
 from torch.autograd import Variable
 from tensorboardX import SummaryWriter
-from utils.buffer import ReplayBuffer
-from algorithms.maddpg import MADDPG
+
+from maddpg.utils.buffer import ReplayBuffer
+from maddpg.algorithms.maddpg import MADDPG
 from pettingzoo.mpe import simple_spread_v2
 
 
