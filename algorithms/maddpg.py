@@ -236,9 +236,9 @@ class MADDPG(object):
         Instantiate instance of this class from multi-agent environment
         """
         agent_init_params = []
-        alg_types = [adversary_alg if atype == 'adversary' else agent_alg for
-                     atype in env.agent_types]
-        for acsp, obsp, algtype in zip(env.action_space, env.observation_space,
+        alg_types = [adversary_alg if agent.count('adversary') else agent_alg for
+                     agent in env.agents]
+        for acsp, obsp, algtype in zip(env.action_spaces.values(), env.observation_spaces.values(),
                                        alg_types):
             num_in_pol = obsp.shape[0]
             if isinstance(acsp, Box):
@@ -250,9 +250,9 @@ class MADDPG(object):
             num_out_pol = get_shape(acsp)
             if algtype == "MADDPG":
                 num_in_critic = 0
-                for oobsp in env.observation_space:
+                for oobsp in env.observation_spaces.values():
                     num_in_critic += oobsp.shape[0]
-                for oacsp in env.action_space:
+                for oacsp in env.action_spaces.values():
                     num_in_critic += get_shape(oacsp)
             else:
                 num_in_critic = obsp.shape[0] + get_shape(acsp)
